@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load markup blog_tags %}
+
+{% block page_title %}{{ object.title }}{% endblock page_title %}
+
+{% block author %}{{ object.author|capfirst }}{% endblock author %}
+
+{% block main_content %}
+    <div class="blog-entry">
+        <div class="col-md-9">
+            <h1>
+                {{ object.title|capfirst }}
+                <div><small>By {{ object.author|capfirst }}, {{ object.date_published.date }}</small></div>
+            </h1>
+            {{ object.content|markdown:"codehilite" }}
+        </div>
+        <div class="col-md-3 well">
+            <div>
+                {% for tag in object.tags.all %}
+                    <a href="{% url 'bloglist_by_tags' %}?tag={{ tag }}" class="label label-primary">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            <hr>
+            <div>
+                {% blog_roll %}
+            </div>
+        </div>
+
+    </div>
+{% endblock main_content %}

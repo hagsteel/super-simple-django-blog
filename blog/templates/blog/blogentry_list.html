@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+
+{% block main_content %}
+    <div class="col-md-7">
+        {% for blog in object_list %}
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a> by <small>{{ blog.author }}</small></h4>
+                    <div><small>{{ blog.date_published }}</small></div>
+                    <div><small>{{ blog.excerpt|truncatewords:40 }}</small></div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-3 well">
+        {% blog_roll %}
+    </div>
+
+    {% if is_paginated %}
+        <div class="pagination col-md-12">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url 'blog' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url 'blog' %}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+{% endblock main_content %}

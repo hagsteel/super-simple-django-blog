@@ -1,0 +1,6 @@
+{% for blog in blog_entries %}
+    <div><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></div>
+    <small>{{ blog.date_published.date }}</small>
+    <div><small>{{ blog.excerpt|truncatewords:40 }}</small></div>
+    <hr>
+{% endfor %}

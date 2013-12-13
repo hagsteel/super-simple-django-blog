@@ -18,7 +18,8 @@ setup(
     long_description=read('README.md'),
     install_requires=[
         "Django >= 1.4",
-        "django-taggit"
+        "django-taggit",
+        "markdown"
     ],
     classifiers=[
         "Development Status :: Beta",

@@ -12,9 +12,7 @@ class BlogEntryAdmin(admin.ModelAdmin):
 
         absolute_url = blog_entry.get_absolute_url()
         if absolute_url:
-            view_on_site += u'<a href="%s" title="%s" target="_blank">view on site</a>' % \
-                            (absolute_url, 'View on site', settings.STATIC_URL, 'View on site')
-
+            view_on_site += u'<a href="{}" title="View on site" target="_blank">view on site</a>'.format(absolute_url)
         return view_on_site
 
     view_on_site.short_description = ''

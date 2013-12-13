@@ -1,4 +1,4 @@
 {
     "sources": ["blog"],
-    "requirements": "django-taggit"
+    "requirements": ["django-taggit"]
 }
